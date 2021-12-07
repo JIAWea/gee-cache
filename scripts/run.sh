@@ -1,7 +1,7 @@
 #!/bin/bash
 trap "rm server;kill 0" EXIT
 
-cd ../example
+cd ../example || exit
 go build -o server
 ./server -port=8001 &
 ./server -port=8002 &

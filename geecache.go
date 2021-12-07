@@ -2,9 +2,11 @@ package geecache
 
 import (
 	"fmt"
-	"gee-cache/singleflight"
 	"log"
 	"sync"
+
+	pb "gee-cache/geecachepb"
+	"gee-cache/singleflight"
 )
 
 // Getter 加载数据
@@ -103,11 +105,16 @@ func (g *Group) load(key string) (value ByteView, err error) {
 }
 
 func (g *Group) getFromPeer(peer PeerGetter, key string) (ByteView, error) {
-	bytes, err := peer.Get(g.name, key)
+	req := &pb.Request{
+		Group: g.name,
+		Key:   key,
+	}
+	rsp := &pb.Response{}
+	err := peer.Get(req, rsp)
 	if err != nil {
 		return ByteView{}, err
 	}
-	return ByteView{b: bytes}, nil
+	return ByteView{b: rsp.Value}, nil
 }
 
 func (g *Group) getLocally(key string) (ByteView, error) {
