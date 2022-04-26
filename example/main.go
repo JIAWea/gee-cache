@@ -3,9 +3,10 @@ package main
 import (
 	"flag"
 	"fmt"
-	"gee-cache"
 	"log"
 	"net/http"
+
+	"gee-cache"
 )
 
 var mockDB = map[string]string{

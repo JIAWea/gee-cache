@@ -1,8 +1,9 @@
 package geecache
 
 import (
-	"gee-cache/lru"
 	"sync"
+
+	"gee-cache/lru"
 )
 
 type cache struct {

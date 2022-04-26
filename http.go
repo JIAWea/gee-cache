@@ -2,14 +2,15 @@ package geecache
 
 import (
 	"fmt"
-	"gee-cache/consistenthash"
-	pb "gee-cache/geecachepb"
-	"github.com/golang/protobuf/proto"
 	"io/ioutil"
 	"log"
 	"net/http"
 	"strings"
 	"sync"
+
+	"gee-cache/consistenthash"
+	pb "gee-cache/geecachepb"
+	"github.com/golang/protobuf/proto"
 )
 
 const (
